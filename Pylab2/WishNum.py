@@ -1,5 +1,4 @@
-
-def finding(target: int, leftbord: int, rightbord: int) -> tuple:
+def finding(target: int, leftbord: int, rightbord: int) -> tuple[int, int | None]:
     """function finding hidden number."""
     if leftbord <= target <= rightbord:
         count = 0
@@ -11,7 +10,6 @@ def finding(target: int, leftbord: int, rightbord: int) -> tuple:
             elif target < middle:
                 rightbord = middle - 1
             else:
-                target == middle
                 return target, count
         return target, count
     else:
