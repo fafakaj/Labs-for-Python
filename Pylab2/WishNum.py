@@ -1,5 +1,10 @@
 def finding(target: int, leftbord: int, rightbord: int) -> tuple[int, int | None]:
-    """function finding hidden number."""
+    """Функиця реализующая бинарный поиск заданного числа в заданном диапозоне.
+
+    target - загаданное число
+    leftbord - левая граница диапозона поиска
+    rightbord - правая граница диапозона поиска
+    """
     if leftbord <= target <= rightbord:
         count = 0
         while rightbord >= leftbord:
