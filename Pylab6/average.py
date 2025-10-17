@@ -36,6 +36,7 @@ def recursive_bin_tree(height, root = None, l_b = None, r_b = None, h_actually =
 
     height: int - высота бинарного дерева
     root: int, None - значение корня
+    h_actually: int - значение текущий высоты
     l_b, r_b - функции для левого и правого корня
     Возвращает: словарь вида {str(): [левый корень, правый корень]}
     """
@@ -80,7 +81,7 @@ def benchmark(func, n, repeat=5):
 def main():
     # фиксированный набор данных
     random.seed(42)
-    test_data = list(range(15, 30))
+    test_data = list(range(18, 24))
 
     res_iterative = []
     res_recursive = []
