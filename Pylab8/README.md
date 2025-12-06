@@ -54,31 +54,31 @@
 ---
 
 ## Структура проекта
-lab8/															
-├── controllers/               
-│   ├── init.py
-│   └── main_controller.py     
-├── models/                   
-│   ├── init.py
-│   ├── app.py
+lab8/
+├── __init__.py                
+├── controllers/
+│   ├── __init__.py
+│   └── main_controller.py
+├── models/
+│   ├── __init__.py
 │   ├── author.py
-│   ├── currency.py
+│   ├── app.py
 │   ├── user.py
+│   ├── currency.py
 │   └── user_currency.py
-├── static/                   
-│   └── style.css              
-├── templates/                 
-│   ├── base.html              
-│   ├── author.html            
-│   ├── currencies.html        
-│   ├── index.html             
-│   ├── user.html              
-│   └── users.html             
-├── utils/                    
-│   ├── init.py
-│   └── myapp.py               
-└── README.md
-   
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── author.html
+│   ├── users.html
+│   ├── user.html
+│   └── currencies.html
+├── static/
+│   └── style.css
+├── utils/
+│   ├── __init__.py
+│   └── currencies_api.py
+└── myapp.py                   # запуск сервер
 
 ---
 
@@ -107,6 +107,7 @@ class Currency:
         if not isinstance(value, (int, float)) or value <= 0:
             raise TypeError("Курс валюты должен быть положительным числом")
         self._value = float(value)
+```
 
 Контроллер
 Маршрутизация реализована в controllers/main_controller.py. Все запросы обрабатываются через handle_request, который вызывает соответствующие функции и рендерит шаблоны с помощью jinja2.Environment.
