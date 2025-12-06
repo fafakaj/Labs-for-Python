@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}{{ app.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ app.name }} v{{ app.version }}</h1>
+<p>Веб-приложение для отслеживания курсов валют ЦБ РФ и подписки пользователей.</p>
+<p>Автор: <strong>{{ app.author.name }}</strong> (группа {{ app.author.group }})</p>
+{% endblock %}

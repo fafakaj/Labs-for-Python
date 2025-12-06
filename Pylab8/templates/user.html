@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Пользователь: {{ user.name }}{% endblock %}
+
+{% block content %}
+<h2>Пользователь: {{ user.name }}</h2>
+
+<h3 class="mt-4">Подписки</h3>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% elif subscribed_codes %}
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Валюта</th>
+        <th>Курс (RUB)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for code in subscribed_codes %}
+      <tr>
+        <td><strong>{{ code }}</strong></td>
+        <td>
+          {% if currencies[code] is defined %}
+          {{ "%.4f"|format(currencies[code]) }}
+          {% else %}
+          <em>данные недоступны</em>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h3 class="mt-5">Динамика курсов (последние 4 месяца)</h3>
+<div class="row">
+  {% for code, data in chart_data.items() %}
+  <div class="col-md-6 mb-4">
+    <canvas id="chart_{{ code }}"></canvas>
+  </div>
+  {% endfor %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  {% for code, data in chart_data.items() %}
+  const ctx_{{ code }} = document.getElementById('chart_{{ code }}').getContext('2d');
+  new Chart(ctx_{{ code }}, {
+    type: 'line',
+    data: {
+      labels: {{ data['dates'] | tojson }},
+    datasets: [{
+      label: '{{ code }}/RUB',
+      data: {{ data['values'] | tojson }},
+    borderColor: '#' + Math.floor(Math.random() * 16777215).toString(16),
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    tension: 0.3
+      }]
+    },
+    options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true }
+    },
+    scales: {
+      y: { beginAtZero: false }
+    }
+  }
+      });
+  {% endfor %}
+</script>
+{% else %}
+<p class="text-muted">Пользователь ни на что не подписан.</p>
+{% endif %}
+
+
+<h3 class="mt-5">Подписаться на новую валюту</h3>
+<form method="get" action="/subscribe">
+  <input type="hidden" name="user_id" value="{{ user.id }}">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="currency" class="form-label">Код валюты (например, USD)</label>
+      <input type="text" name="currency" id="currency" class="form-control" maxlength="3" placeholder="XXX" required>
+    </div>
+    <div class="col-md-6 d-flex align-items-end">
+      <button type="submit" class="btn btn-success">Подписаться</button>
+    </div>
+  </div>
+</form>
+
+<a href="/users" class="btn btn-secondary mt-3">&larr; Назад к списку пользователей</a>
+{% endblock %}

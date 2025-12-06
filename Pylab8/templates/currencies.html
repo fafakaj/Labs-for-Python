@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Курсы валют{% endblock %}
+
+{% block content %}
+<h2>Топ-15 валют (ЦБ РФ)</h2>
+
+{% if error %}
+  <div class="alert alert-danger">Ошибка: {{ error }}</div>
+{% elif currencies %}
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Код</th>
+          <th>Курс (RUB)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in currencies %}
+        <tr>
+          <td><strong>{{ c.char_code }}</strong></td>
+          <td>{{ "%.4f"|format(c.value) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p>Нет данных.</p>
+{% endif %}
+
+<h3 class="mt-5">Подписаться на валюту</h3>
+<p>Введите код любой валюты (например, USD, EUR, CNY, AMD, AED и т.д.).</p>
+<form method="get" action="/subscribe">
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label for="user_id" class="form-label">Выберите пользователя</label>
+      <select name="user_id" id="user_id" class="form-select" required>
+        {% for user in users_db.values() %}
+        <option value="{{ user.id }}">{{ user.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="currency" class="form-label">Код валюты (например, USD)</label>
+      <input type="text" name="currency" id="currency" class="form-control" maxlength="3" placeholder="XXX" required>
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+      <button type="submit" class="btn btn-success">Подписаться</button>
+    </div>
+  </div>
+</form>
+
+<a href="/" class="btn btn-primary mt-3">← На главную</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Об авторе{% endblock %}
+
+{% block content %}
+<h2>Об авторе</h2>
+<p><strong>Имя:</strong> {{ author.name }}</p>
+<p><strong>Группа:</strong> {{ author.group }}</p>
+<p>Студент ПИиКТ, программа: Нейротехнологии и программирование.</p>
+<p>
+  <a href="mailto:mrainxxxm@gmail.com" class="btn btn-outline-primary">Email</a>
+  <a href="https://t.me/smthlikeu13" class="btn btn-outline-secondary">Telegram</a>
+</p>
+{% endblock %}
