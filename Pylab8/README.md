@@ -54,9 +54,7 @@
 ---
 
 ## Структура проекта
-7
-
-lab8/
+lab8/															
 ├── controllers/               
 │   ├── init.py
 │   └── main_controller.py     
@@ -111,9 +109,10 @@ class Currency:
         self._value = float(value)
 
 Контроллер
-
 Маршрутизация реализована в controllers/main_controller.py. Все запросы обрабатываются через handle_request, который вызывает соответствующие функции и рендерит шаблоны с помощью jinja2.Environment.
 Пример маршрута /user?id=...:
+```python
+
 def handle_user(user_id):
     user = users_db.get(user_id)
     if not user:
@@ -123,11 +122,15 @@ def handle_user(user_id):
     ...
     html = render_template("user.html", user=user, ...)
     return {"status": 200, "content": html, ...}
+```
 Шаблоны
 
 Шаблоны расположены в папке templates/ и используют jinja2. Инициализация Environment:
+```python
+
 template_dir = os.path.join(os.path.dirname(__file__), '..', 'templates')
 env = Environment(loader=FileSystemLoader(template_dir), autoescape=select_autoescape())
+```
 
 Работа с API
 
