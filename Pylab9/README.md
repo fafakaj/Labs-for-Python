@@ -109,3 +109,13 @@ pylab9/
 5. **Тестирование** - использование unittest.mock для изоляции зависимостей
 
 ## Примеры работы
+<img width="1062" height="418" alt="image" src="https://github.com/user-attachments/assets/4a4fb5e0-8e80-40cf-be2a-86d2e8eba698" />
+<img width="1280" height="470" alt="image" src="https://github.com/user-attachments/assets/59e56e2e-54e4-402c-8ec4-9a6b09b5e09c" />
+<img width="1280" height="470" alt="image" src="https://github.com/user-attachments/assets/4393422b-8e09-4f58-a5a7-8e74f6fde689" />
+<img width="1280" height="470" alt="image" src="https://github.com/user-attachments/assets/b0c23959-dc1a-4ce2-b809-f42135aa2270" />
+<img width="1280" height="616" alt="image" src="https://github.com/user-attachments/assets/d0c28ae1-aa77-4665-b527-11389ce83b4c" />
+<img width="1280" height="616" alt="image" src="https://github.com/user-attachments/assets/538f4f9c-47ff-43e6-8846-2c28560f9855" />
+<img width="1280" height="351" alt="image" src="https://github.com/user-attachments/assets/af0f3283-27d7-44af-9646-dc22f9fe6f28" />
+
+
+
