@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/author">Об авторе</a>
+        <a href="/currencies">Валюты</a>
+    </nav>
+
+    <h2>Список пользователей</h2>
+    <ul>
+        {% for user in users %}
+        <li>
+            <a href="/user?id={{ user.id }}">{{ user.name }}</a>
+            (Подписок: {{ user.currency_count }})
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

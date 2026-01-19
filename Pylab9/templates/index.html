@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .author {
+            color: #999;
+            font-size: 1.1em;
+            margin-top: 40px;
+        }
+        nav {
+            margin: 30px 0;
+        }
+        nav a {
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 2px solid #0066cc;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: #0066cc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Currency Tracker v2.0</h1>
+
+        <div class="subtitle">
+            Веб-приложение для отслеживания курсов валют ЦБ РФ и подписки пользователей.
+        </div>
+
+        <nav>
+            <a href="/currencies">Валюты</a>
+            <a href="/users">Пользователи</a>
+            <a href="/author">Об авторе</a>
+        </nav>
+
+        <div class="author">
+            Автор: Лесницкий Александр (группа P3123)
+        </div>
+    </div>
+</body>
+</html>

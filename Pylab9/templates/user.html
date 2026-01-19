@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .user-info {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #e0e0e0;
+        }
+        .subscribe-btn {
+            padding: 5px 10px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .subscribe-btn:hover {
+            background: #45a049;
+        }
+        .unsubscribe-btn {
+            padding: 5px 10px;
+            background: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .unsubscribe-btn:hover {
+            background: #da190b;
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <nav>
+        <a href="/users">Все пользователи</a>
+        <a href="/">Главная</a>
+        <a href="/currencies">Валюты</a>
+        <a href="/user/charts?user_id={{ user.id }}">Графики валют</a>
+    </nav>
+
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+
+    <div class="user-info">
+        <p><strong>ID:</strong> {{ user.id }}</p>
+        <p><strong>Имя:</strong> {{ user.name }}</p>
+    </div>
+
+    <h2>Валюты, на которые подписан пользователь</h2>
+
+    {% if currencies %}
+    <table>
+        <tr>
+            <th>Код</th>
+            <th>Название</th>
+            <th>Курс</th>
+            <th>Номинал</th>
+            <th>Действие</th>
+        </tr>
+        {% for currency in currencies %}
+        <tr>
+            <td>{{ currency.char_code }}</td>
+            <td>{{ currency.name }}</td>
+            <td>{{ "%.4f"|format(currency.value) }}</td>
+            <td>{{ currency.nominal }}</td>
+            <td>
+                <a href="/user/unsubscribe?user_id={{ user.id }}&currency_id={{ currency.id }}" class="unsubscribe-btn">Отписаться</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>Всего подписок: {{ currencies|length }}</p>
+    {% else %}
+    <p>Пользователь не подписан ни на одну валюту.</p>
+    {% endif %}
+
+    <h2>Все доступные валюты</h2>
+    {% if all_currencies %}
+    <table>
+        <tr>
+            <th>Код</th>
+            <th>Название</th>
+            <th>Курс</th>
+            <th>Действие</th>
+        </tr>
+        {% for currency in all_currencies %}
+        <tr>
+            <td>{{ currency.char_code }}</td>
+            <td>{{ currency.name }}</td>
+            <td>{{ "%.4f"|format(currency.value) }}</td>
+            <td>
+                {% if currency.is_subscribed %}
+                <span style="color: green;">Подписан</span>
+                {% else %}
+                <a href="/user/subscribe?user_id={{ user.id }}&currency_id={{ currency.id }}" class="subscribe-btn">Подписаться</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>

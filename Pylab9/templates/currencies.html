@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #e0e0e0;
+        }
+        .update-form {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .update-form input {
+            padding: 5px;
+            margin: 5px;
+        }
+        .update-form button {
+            padding: 5px 15px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .update-form button:hover {
+            background: #0052a3;
+        }
+        a {
+            color: #0066cc;
+        }
+        a.delete {
+            color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/author">Об авторе</a>
+        <a href="/users">Пользователи</a>
+        <a href="/currencies">Валюты</a>
+        <a href="/currency/add">Добавить валюту</a>
+    </nav>
+
+    {% if update_message %}
+    <p style="color: green; background: #e8f5e9; padding: 10px; border: 1px solid #4caf50;">
+        {{ update_message }}
+    </p>
+    {% endif %}
+
+    <div style="margin: 20px 0;">
+        <a href="/currency/update_all" style="padding: 10px 20px; background: #0066cc; color: white; text-decoration: none; border-radius: 5px;">
+            Обновить все курсы из API
+        </a>
+    </div>
+
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NumCode</th>
+            <th>CharCode</th>
+            <th>Название</th>
+            <th>Курс</th>
+            <th>Номинал</th>
+            <th>Действия</th>
+        </tr>
+        {% for currency in currencies %}
+        <tr>
+            <td>{{ currency.id }}</td>
+            <td>{{ currency.num_code }}</td>
+            <td>{{ currency.char_code }}</td>
+            <td>{{ currency.name }}</td>
+            <td>{{ "%.4f"|format(currency.value) }}</td>
+            <td>{{ currency.nominal }}</td>
+            <td>
+                <a href="/currency/delete?id={{ currency.id }}" class="delete" onclick="return confirm('Удалить валюту {{ currency.char_code }}?')">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

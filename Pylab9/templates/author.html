@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .info p {
+            margin: 10px 0;
+        }
+        .nav {
+            margin-top: 20px;
+        }
+        .nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <div class="info">
+        <p><strong>ФИО:</strong> {{ author_name }}</p>
+        <p><strong>Статус:</strong> {{ student_info }}</p>
+        <p><strong>Направление:</strong> {{ direction }}</p>
+        <p><strong>Факультет:</strong> {{ faculty }}</p>
+        <p><strong>ВУЗ:</strong> {{ university }}</p>
+        <p><strong>Email:</strong> <a href="mailto:{{ email }}">{{ email }}</a></p>
+    </div>
+
+    <div class="nav">
+        <a href="/">На главную</a>
+        <a href="/currencies">Валюты</a>
+        <a href="/users">Пользователи</a>
+    </div>
+</body>
+</html>
